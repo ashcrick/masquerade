@@ -1,5 +1,6 @@
+require 'ruby-debug'
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.2.2' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.2.4' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -32,8 +33,11 @@ Rails::Initializer.run do |config|
     :port => APP_CONFIG['mailer']['port'],
     :user_name => APP_CONFIG['mailer']['user_name'],
     :password => APP_CONFIG['mailer']['password'],
-    :authentication => APP_CONFIG['mailer']['authentication'] }
-  
+    :authentication => APP_CONFIG['mailer']['authentication']}
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_charset = 'utf-8'
+
   # Timezone
   config.time_zone = APP_CONFIG['time_zone'] || 'UTC'
   

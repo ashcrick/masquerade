@@ -4,6 +4,7 @@ class AccountMailer < ActionMailer::Base
   
   def signup_notification(account)
     setup_email(account)
+    debugger
     @subject = 'Please activate your account'
   end
   
